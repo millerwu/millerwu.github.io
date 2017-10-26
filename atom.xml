@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Wu</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-10-26T14:27:37.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>wu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2017/10/26/test/"/>
+    <id>http://yoursite.com/2017/10/26/test/</id>
+    <published>2017-10-26T14:27:37.000Z</published>
+    <updated>2017-10-26T14:27:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="for-test"><a href="#for-test" class="headerlink" title="for test"></a>for test</h1><h2 id="111"><a href="#111" class="headerlink" title="111"></a>111</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;for-test&quot;&gt;&lt;a href=&quot;#for-test&quot; class=&quot;headerlink&quot; title=&quot;for test&quot;&gt;&lt;/a&gt;for test&lt;/h1&gt;&lt;h2 id=&quot;111&quot;&gt;&lt;a href=&quot;#111&quot; class=&quot;headerlink&quot; ti
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello Hexo</title>
+    <link href="http://yoursite.com/2017/10/26/Hello/"/>
+    <id>http://yoursite.com/2017/10/26/Hello/</id>
+    <published>2017-10-26T14:05:07.000Z</published>
+    <updated>2017-10-26T14:05:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Efficient Integer To String</title>
+    <link href="http://yoursite.com/2017/09/18/Efficient-Integer-To-String/"/>
+    <id>http://yoursite.com/2017/09/18/Efficient-Integer-To-String/</id>
+    <published>2017-09-18T12:50:17.000Z</published>
+    <updated>2017-10-26T14:05:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Integer-Converve-to-String"><a href="#Integer-Converve-to-String" class="headerlink" title="Integer Converve to String"></a>Integer Converve to String</h1><p>注意点   </p><ul><li>写c++ 模板函数，可以涵盖使用 int， short， long， long long 类型的各个类型</li><li>注意char 数值的大小</li><li>考虑负数case</li></ul><p>在muduo 库中看到一种很好的写法，记录下来</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">char digits[] = &quot;9876543210123456789&quot;;</div><div class="line">int zero = 9;</div><div class="line"></div><div class="line">template &lt;typename T&gt;</div><div class="line">int IntToString(char buf[], T t)</div><div class="line">&#123;</div><div class="line">  int64_t num = static_cast&lt;int64_t&gt;(t);</div><div class="line">  int size = 0;</div><div class="line">  int i = 0;</div><div class="line"></div><div class="line">  do &#123;</div><div class="line">    int index = static_cast&lt;char&gt;(num % 10);</div><div class="line">    num = num/10;</div><div class="line">    buf[i++] = digits[zero+index];</div><div class="line">    size++;</div><div class="line">  &#125; while (num != 0);</div><div class="line"></div><div class="line">  if (t &lt; 0)  &#123;</div><div class="line">    buf[i++] = &apos;-&apos;;</div><div class="line">  &#125;</div><div class="line">  buf[i] = &apos;\0&apos;;</div><div class="line">  std::reverse(&amp;buf[0], &amp;buf[i]);</div><div class="line"></div><div class="line">  return size;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>自己在用普通模式写的情况下，因为负数的case，会导致代码逻辑写的比较复杂；使用这个方案，代码清晰，高效</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Integer-Converve-to-String&quot;&gt;&lt;a href=&quot;#Integer-Converve-to-String&quot; class=&quot;headerlink&quot; title=&quot;Integer Converve to String&quot;&gt;&lt;/a&gt;Integer 
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
