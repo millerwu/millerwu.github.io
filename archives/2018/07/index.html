@@ -96,16 +96,12 @@
 
 
 
-<meta name="description" content="Integer Converve to String注意点     写c++ 模板函数，可以涵盖使用 int， short， long， long long 类型的各个类型 注意char 数值的大小 考虑负数case  在muduo 库中看到一种很好的写法，记录下来 12345678910111213141516171819202122232425char digits[] = &amp;quot;987">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Efficient Integer To String">
-<meta property="og:url" content="http://yoursite.com/2017/09/18/Efficient-Integer-To-String/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wu">
+<meta property="og:url" content="http://yoursite.com/archives/2018/07/index.html">
 <meta property="og:site_name" content="Wu">
-<meta property="og:description" content="Integer Converve to String注意点     写c++ 模板函数，可以涵盖使用 int， short， long， long long 类型的各个类型 注意char 数值的大小 考虑负数case  在muduo 库中看到一种很好的写法，记录下来 12345678910111213141516171819202122232425char digits[] = &amp;quot;987">
-<meta property="og:updated_time" content="2017-10-26T14:05:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Efficient Integer To String">
-<meta name="twitter:description" content="Integer Converve to String注意点     写c++ 模板函数，可以涵盖使用 int， short， long， long long 类型的各个类型 注意char 数值的大小 考虑负数case  在muduo 库中看到一种很好的写法，记录下来 12345678910111213141516171819202122232425char digits[] = &amp;quot;987">
+<meta name="twitter:title" content="Wu">
 
 
 
@@ -134,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/18/Efficient-Integer-To-String/"/>
+  <link rel="canonical" href="http://yoursite.com/archives/2018/07/"/>
 
 
 
 
 
-  <title>Efficient Integer To String | Wu</title>
+  <title>Archiv | Wu</title>
   
 
 
@@ -165,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,149 +245,74 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        Öhm..! Insgesamt 4 Artikel. Bleib dran.
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/Efficient-Integer-To-String/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Wu">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">Efficient Integer To String</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2018/07/27/test/" itemprop="url">
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span itemprop="name">test</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-18T20:50:17+08:00">
-                2017-09-18
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-07-27T21:48:15+08:00"
+              content="2018-07-27" >
+          07-27
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h1 id="Integer-Converve-to-String"><a href="#Integer-Converve-to-String" class="headerlink" title="Integer Converve to String"></a>Integer Converve to String</h1><p>注意点   </p>
-<ul>
-<li>写c++ 模板函数，可以涵盖使用 int， short， long， long long 类型的各个类型</li>
-<li>注意char 数值的大小</li>
-<li>考虑负数case</li>
-</ul>
-<p>在muduo 库中看到一种很好的写法，记录下来</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">char digits[] = &quot;9876543210123456789&quot;;</div><div class="line">int zero = 9;</div><div class="line"></div><div class="line">template &lt;typename T&gt;</div><div class="line">int IntToString(char buf[], T t)</div><div class="line">&#123;</div><div class="line">  int64_t num = static_cast&lt;int64_t&gt;(t);</div><div class="line">  int size = 0;</div><div class="line">  int i = 0;</div><div class="line"></div><div class="line">  do &#123;</div><div class="line">    int index = static_cast&lt;char&gt;(num % 10);</div><div class="line">    num = num/10;</div><div class="line">    buf[i++] = digits[zero+index];</div><div class="line">    size++;</div><div class="line">  &#125; while (num != 0);</div><div class="line"></div><div class="line">  if (t &lt; 0)  &#123;</div><div class="line">    buf[i++] = &apos;-&apos;;</div><div class="line">  &#125;</div><div class="line">  buf[i] = &apos;\0&apos;;</div><div class="line">  std::reverse(&amp;buf[0], &amp;buf[i]);</div><div class="line"></div><div class="line">  return size;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>自己在用普通模式写的情况下，因为负数的case，会导致代码逻辑写的比较复杂；使用这个方案，代码清晰，高效</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/26/Hello/" rel="prev" title="Hello Hexo">
-                Hello Hexo <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -399,10 +320,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -423,17 +340,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -484,22 +392,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Integer-Converve-to-String"><span class="nav-number">1.</span> <span class="nav-text">Integer Converve to String</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -613,9 +505,11 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   
