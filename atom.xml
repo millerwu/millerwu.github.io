@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-27T14:12:50.000Z</updated>
+  <updated>2018-07-30T02:17:54.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>[Android]如何定位Android native中的crash问题</title>
+    <link href="http://yoursite.com/2018/07/28/Android-%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8DAndroid-native%E4%B8%AD%E7%9A%84crash%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2018/07/28/Android-如何定位Android-native中的crash问题/</id>
+    <published>2018-07-28T14:39:26.000Z</published>
+    <updated>2018-07-30T02:17:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>由于工作的关系，经常会遇到发布之后的库在Native 层出现了crash问题，crash时会出现类似下面的LOG（我写了一个sample来模拟crash场景，代码详见：<a href="https://github.com/millerwu/recipes/tree/master/shared_library_test" target="_blank" rel="external">github</a>  )：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">--------- beginning of crash</div><div class="line">01-01 00:07:44.318  5004  5004 F libc    : Fatal signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x0 in tid 5004 (test), pid 5004 (test)</div><div class="line">01-01 00:07:44.354  5007  5007 I crash_dump32: obtaining output fd from tombstoned, type: kDebuggerdTombstone</div><div class="line">01-01 00:07:44.357  1080  1080 I /system/bin/tombstoned: received crash request for pid 5004</div><div class="line">01-01 00:07:44.358  5007  5007 I crash_dump32: performing dump of process 5004 (target tid = 5004)</div><div class="line">01-01 00:07:44.361  5007  5007 F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***</div><div class="line">01-01 00:07:44.361  5007  5007 F DEBUG   : Build fingerprint: &apos;Xiaomi/polaris/polaris:9/PKQ1.180620.001/8.7.17:user/release-keys&apos;</div><div class="line">01-01 00:07:44.361  5007  5007 F DEBUG   : Revision: &apos;0&apos;</div><div class="line">01-01 00:07:44.361  5007  5007 F DEBUG   : ABI: &apos;arm&apos;</div><div class="line">01-01 00:07:44.362  5007  5007 F DEBUG   : pid: 5004, tid: 5004, name: test  &gt;&gt;&gt; ./test &lt;&lt;&lt;</div><div class="line">01-01 00:07:44.362  5007  5007 F DEBUG   : signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x0</div><div class="line">01-01 00:07:44.362  5007  5007 F DEBUG   : Cause: null pointer dereference</div><div class="line">01-01 00:07:44.362  5007  5007 F DEBUG   :     r0  00000000  r1  000000ff  r2  00000024  r3  00000000</div><div class="line">01-01 00:07:44.362  5007  5007 F DEBUG   :     r4  f70f2d8c  r5  ff9bb00c  r6  ff9baffc  r7  f70166b3</div><div class="line">01-01 00:07:44.362  5007  5007 F DEBUG   :     r8  00000000  r9  00000000  r10 00000000  r11 ff9bb08c</div><div class="line">01-01 00:07:44.362  5007  5007 F DEBUG   :     ip  f7017f94  sp  ff9baff8  lr  f701502f  pc  f7060fa4</div><div class="line">01-01 00:07:44.364  5007  5007 F DEBUG   :</div><div class="line">01-01 00:07:44.364  5007  5007 F DEBUG   : backtrace:</div><div class="line">01-01 00:07:44.364  5007  5007 F DEBUG   :     #00 pc 00019fa4  /system/lib/libc.so (memset+32)</div><div class="line">01-01 00:07:44.364  5007  5007 F DEBUG   :     #01 pc 0000102b  /system/lib/libwish_crash.so (wishCrash()+62)</div><div class="line">01-01 00:07:44.364  5007  5007 F DEBUG   :     #02 pc 00000561  /system/lib/libshared_test.so (shared_test()+60)</div><div class="line">01-01 00:07:44.365  5007  5007 F DEBUG   :     #03 pc 0000065b  /system/bin/test</div><div class="line">01-01 00:07:44.365  5007  5007 F DEBUG   :     #04 pc 0008bdc9  /system/lib/libc.so (__libc_init+48)</div><div class="line">01-01 00:07:44.365  5007  5007 F DEBUG   :     #05 pc 00000614  /system/bin/test</div></pre></td></tr></table></figure></p><p>在问题的LOG中只出现了库的一些信息，这类crash应该如何来分析和定位呢？</p><h2 id="Android-NDK编译"><a href="#Android-NDK编译" class="headerlink" title="Android NDK编译"></a>Android NDK编译</h2><p>在为了解决这个问题之前，我们先来说下Android NDK。<br>Android NDK，即Native Development Kit，是一个可以让你在你的app中使用类似c/c++ 原生代码的工具包。NDK包括： </p><ul><li>从c/c++生成原生代码库所需的工具和build files； </li><li>将一致的原生库嵌入可以在Android设备上部署的应用程序包文件中； </li><li>支持所有未来Android平台的一系列原生系统头文件和库；<br>为何要用到NDK？概况来说主要分为以下几种情况： </li><li>代码保护，由于APK的Java层代码很容易被反编译，而C/C++库反编译难度较大； </li><li>在NDK中调用第三方C/C++库； </li><li>编译移植，用C/C++写的库可以方便地在其他嵌入式平台上再次使用。</li></ul><h2 id="带符号表和调试信息的库文件"><a href="#带符号表和调试信息的库文件" class="headerlink" title="带符号表和调试信息的库文件"></a>带符号表和调试信息的库文件</h2><p>使用ndk-build进行编译时，会生成两个同名的so库，位于不同的目录/projectpath/libs/armeabi/xxx.so和/project path/obj/local/armeabi/xxx.so。这两个so文件体积相差很大。前者会跟随app一起发布，所以尽可能的小；而后者包含了很多调试信息。通过readelf -S 来看下这两个文件中section的差异。<br><img src="/images/compare_lib.png" alt=""></p><p>从上图的比较可以看出，相比较于前者，后者多了8个.debug_前缀的section以及.symtab和.strtab条目。这些条目存放了调试信息和符号表信息。当对后置执行strip命令之后，得到的结果就是前者。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ strip libwish_crash.so</div></pre></td></tr></table></figure><p>需要注意的是，这两个文件在代码段的偏移量上，是完全相同的。</p><h2 id="使用addr2line命令来定位"><a href="#使用addr2line命令来定位" class="headerlink" title="使用addr2line命令来定位"></a>使用addr2line命令来定位</h2><p>所以在我们程序中出现crash时，可以使用带符号表和调试信息的库文件，在LOG中找出crash的地址，使用addr2line命令进行定位，找到crash问题出现在代码的哪一行。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ arm-linux-androideabi-addr2line -e crash/obj/local/armeabi-v7a/libwish_crash.so</div><div class="line">0000102b</div><div class="line">/Users/wumiaoliang/Workspace/github/wu/recipes/shared_library_test/crash/jni/crash.cpp:12</div></pre></td></tr></table></figure><p>可以看到crash.cpp的12 行的代码,有空指针错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">11 void* p = NULL;</div><div class="line">12 memset(p, 0xff, 100);</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;问题背景&quot;&gt;&lt;a href=&quot;#问题背景&quot; class=&quot;headerlink&quot; title=&quot;问题背景&quot;&gt;&lt;/a&gt;问题背景&lt;/h2&gt;&lt;p&gt;由于工作的关系，经常会遇到发布之后的库在Native 层出现了crash问题，crash时会出现类似下面的LOG（我写了一
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>macOS 10.12 Sierra上Android 源码的下载和编译</title>
